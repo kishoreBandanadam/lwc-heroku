@@ -8,17 +8,20 @@ export default class Accounts extends LightningElement {
         {
             Id: 1,
             Name: 'Birlasoft',
-            Industry: 'IT'
+            Industry: 'IT',
+            Phone: '123456789'
         },
         {
             Id: 2,
             Name: 'Amazon',
-            Industry: 'IT'
+            Industry: 'IT',
+            Phone: '123456789'
         },
         {
             Id: 3,
             Name: 'Cap',
-            Industry: 'IT'
+            Industry: 'IT',
+            Phone: '123456789'
         }
     ];
 
