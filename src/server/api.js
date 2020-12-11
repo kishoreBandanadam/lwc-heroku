@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const express = require('express');
 const path = require('path');
 const { Client } = require('pg');
+require('dotenv').config();
 
 const app = express();
 app.use(helmet());
@@ -36,7 +37,7 @@ app.get('/api/accounts', (req, res) => {
     client.connect();
 
     client.query(
-        'SELECT * from salesforceherokuconnect.account;',
+        'SELECT * from salesforceherokuconnect.account LIMIT 10;',
         (err, resp) => {
             if (err) console.log(err);
 

@@ -6,6 +6,7 @@
     "bugs": "https://github.com/kishoreBandanadam/my-app/issues",
     "dependencies": {
         "compression": "^1.7.4",
+        "dotenv": "^8.2.0",
         "express": "^4.17.1",
         "helmet": "^4.2.0",
         "pg": "^8.5.1"
