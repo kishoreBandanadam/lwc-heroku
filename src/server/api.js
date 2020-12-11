@@ -38,11 +38,19 @@ app.get('/api/accounts', (req, res) => {
 
     client.query(
         'SELECT * from salesforceherokuconnect.account LIMIT 10;',
-        (err, resp) => {
+        (err, data) => {
             if (err) console.log(err);
 
-            console.log(JSON.stringify(resp));
-
+            let accounts = data.rows.map((account) => {
+                return {
+                    Id: account.sfid,
+                    Name: account.name,
+                    Industry: account.industry,
+                    Phone: ''
+                };
+            });
+            //console.log(JSON.stringify(data));
+            res.json(accounts);
             client.end();
         }
     );
