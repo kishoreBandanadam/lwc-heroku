@@ -3,6 +3,7 @@ const compression = require('compression');
 const helmet = require('helmet');
 const express = require('express');
 const path = require('path');
+const { Client } = require('pg');
 
 const app = express();
 app.use(helmet());
@@ -20,6 +21,30 @@ app.use(/^(?!\/api).+/, (req, res) => {
 
 app.get('/api/v1/endpoint', (req, res) => {
     res.json({ success: true });
+});
+
+app.get('/api/accounts', (req, res) => {
+    console.log(req);
+    console.log(res);
+    const client = new Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
+    });
+
+    client.connect();
+
+    client.query(
+        'SELECT * from salesforceherokuconnect.account;',
+        (err, resp) => {
+            if (err) console.log(err);
+
+            console.log(JSON.stringify(resp));
+
+            client.end();
+        }
+    );
 });
 
 app.listen(PORT, () =>
